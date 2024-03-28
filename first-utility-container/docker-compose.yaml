@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  npm:
+    build: ./ # build the imag e based on the Dockerfile in this path
+    stdin_open: true # this is used to ensure that we can insert something in the terminal if needed
+    tty: true # this is used to ensure that we can insert something in the terminal if needed
+    volumes:
+      - ./:/app # Bind mount, connecting the folder in wich this docker-compose is, to the app folder inside the container
+
+# This command will not goes well if we launch docker-compose up, because in the dockerfile we have an entrypoint with only npm. To ensure to append a command to the dockerfile entrypoint, we will use "run". With run, we can target only one service in this docker-compose, and after that service (in this case npm), we can insert the command to append to the entrypoint: docker compose run npm init
+
+# With docker compose run, it will not be removed automatically when shut down, we have to use --rm: docker-compose run --rm npm init

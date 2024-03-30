@@ -14,4 +14,12 @@ spec:
     spec:
       containers:
         - name: story
-          image: daniofiore/kub-data-demo
+          image: daniofiore/kub-data-demo:1
+          volumeMounts: 
+            - mountPath: /app/story
+              name: story-volume
+      volumes:
+        - name: story-volume
+          hostPath: 
+            path: /data
+            type: DirectoryOrCreate

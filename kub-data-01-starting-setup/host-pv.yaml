@@ -5,7 +5,8 @@ metadata:
 spec: 
   capacity:
     storage: 1Gi #1gigabyte
-  volumeMode: FileSystem # Or Block mode
+  volumeMode: Filesystem # Or Block mode
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce # CAN BE MOUNTED AS A READWRITE VOLUME BY A SINGLE NODE
     # - ReadOnlyMany # CAN BE CLAIMED BY MULTIPLE PODS IN MULTIPLE NODES

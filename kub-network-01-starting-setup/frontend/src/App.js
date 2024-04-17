@@ -8,10 +8,11 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = useCallback(function () {
-    fetch('http://192.168.99.100:32140/tasks', {
+    // We write /api because we have handled that behavior in nginx.conf file
+    fetch("/api/tasks", {
       headers: {
-        'Authorization': 'Bearer abc'
-      }
+        Authorization: "Bearer abc",
+      },
     })
       .then(function (response) {
         return response.json();
@@ -29,7 +30,8 @@ function App() {
   );
 
   function addTaskHandler(task) {
-    fetch('http://192.168.99.100:32140/tasks', {
+    // We write /api because we have handled that behavior in nginx.conf file
+    fetch('/api/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
